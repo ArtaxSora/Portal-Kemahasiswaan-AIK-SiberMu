@@ -24,17 +24,20 @@ function Reveal({ children, delay = 0, className = '', id, ...rest }) {
 }
 
 const HERO_SLIDES = [
-  { img: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600&auto=format&fit=crop', alt: 'Kolaborasi mahasiswa SiberMu' },
-  { img: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1600&auto=format&fit=crop', alt: 'Webinar Cyber Security Nasional' },
-  { img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1600&auto=format&fit=crop', alt: 'Pemberdayaan UMKM Digital' }
+  { img: '/hero/quran.jpg', alt: 'Al-Quran terbuka dengan tasbih di atas meja kayu' },
+  { img: '/hero/laptop-meja.jpg', alt: 'Laptop coding di atas meja kerja' },
+  { img: '/hero/masjid.jpg', alt: 'Interior masjid dengan kaligrafi Islami' }
 ]
 
 function AccordionCard({ title, desc, items, badge, photo }) {
   const [openIdx, setOpenIdx] = useState(null)
+  // Cek apakah photo adalah key dari EVENT_IMAGES atau URL langsung
+  const imgUrl = EVENT_IMAGES[photo] || photo
+  
   return (
     <article className="card accordion-card">
       <div className="card-img-wrap">
-        <img src={`https://images.unsplash.com/photo-${photo}?q=80&w=800&auto=format&fit=crop`} alt={title} />
+        <img src={imgUrl} alt={title} />
         <span className="card-badge">{badge}</span>
       </div>
       <div className="card-body">
@@ -81,32 +84,41 @@ function Typewriter() {
 }
 
 const KEMAHASISWAAN = [
-  ['Organisasi Mahasiswa', 'Pusat kepemimpinan mahasiswa PJJ. Mengelola aspirasi, kebijakan strategis, dan program kerja lintas daerah secara virtual maupun hybrid.', [['Kabinet Eksekutif Mahasiswa', 'Mengkoordinasikan seluruh unit kegiatan dan eksekusi program kerja tahunan.'], ['Sidang Pleno DPM SiberMu', 'Forum legislatif mahasiswa untuk pengawasan dan penetapan kebijakan.']], 'BEM & DPM', '1531482615713-2afd69097998'],
-  ['Unit Kegiatan Mahasiswa', 'Wadah hobi, riset teknologi siber, kewirausahaan, seni, dan pengembangan skill praktis bagi mahasiswa PJJ.', [['UKM Cyber Security & Coding', 'Kompetisi CTF, workshop coding, dan riset keamanan jaringan.'], ['UKM Bisnis & E-Commerce', 'Inkubator bisnis digital dan pelatihan kewirausahaan syariah.']], 'Minat & Bakat', '1515187029135-18ee286d815b'],
-  ['Prestasi & Rekognisi', 'Apresiasi tinggi atas pencapaian mahasiswa SiberMu dalam kompetisi tingkat nasional maupun internasional.', [['Juara Hackathon Nasional', 'Rekor medali emas dalam ajang kompetisi programming bergengsi.'], ['Hibah Program Kreativitas', 'Pendanaan riset inovatif dari Kementerian Pendidikan.']], 'Rekognisi', '1523240795612-9a054b0db644'],
-  ['Layanan Holistik', 'Dukungan akademik, konseling psikologi online, beasiswa, serta bimbingan karier terpadu bagi seluruh mahasiswa.', [['Konseling & Bimbingan PJJ', 'Layanan kesehatan mental dan mentoring akademik 24/7.'], ['Beasiswa Kader & Prestasi', 'Skema bantuan biaya kuliah untuk mahasiswa berprestasi dan aktif.']], 'Support Center', '1573496359142-b8d87734a5a2']
+  ['Organisasi Mahasiswa', 'Pusat kepemimpinan mahasiswa PJJ. Mengelola aspirasi, kebijakan strategis, dan program kerja lintas daerah secara virtual maupun hybrid.', [['Kabinet Eksekutif Mahasiswa', 'Mengkoordinasikan seluruh unit kegiatan dan eksekusi program kerja tahunan.'], ['Sidang Pleno DPM SiberMu', 'Forum legislatif mahasiswa untuk pengawasan dan penetapan kebijakan.']], 'BEM & DPM', '/hero/organisasi.jpg'],
+  ['Unit Kegiatan Mahasiswa', 'Wadah hobi, riset teknologi siber, kewirausahaan, seni, dan pengembangan skill praktis bagi mahasiswa PJJ.', [['UKM Cyber Security & Coding', 'Kompetisi CTF, workshop coding, dan riset keamanan jaringan.'], ['UKM Bisnis & E-Commerce', 'Inkubator bisnis digital dan pelatihan kewirausahaan syariah.']], 'Minat & Bakat', '/hero/ukm.jpg'],
+  ['Prestasi & Rekognisi', 'Apresiasi tinggi atas pencapaian mahasiswa SiberMu dalam kompetisi tingkat nasional maupun internasional.', [['Juara Hackathon Nasional', 'Rekor medali emas dalam ajang kompetisi programming bergengsi.'], ['Hibah Program Kreativitas', 'Pendanaan riset inovatif dari Kementerian Pendidikan.']], 'Rekognisi', '/hero/prestasi.jpg'],
+  ['Layanan Holistik', 'Dukungan akademik, konseling psikologi online, beasiswa, serta bimbingan karier terpadu bagi seluruh mahasiswa.', [['Konseling & Bimbingan PJJ', 'Layanan kesehatan mental dan mentoring akademik 24/7.'], ['Beasiswa Kader & Prestasi', 'Skema bantuan biaya kuliah untuk mahasiswa berprestasi dan aktif.']], 'Support Center', '/hero/layanan.jpg']
 ]
 
 const AIK = [
-  ['Kajian Tematik & Cyber Dakwah', 'Menghidupkan risalah Islam rahmatan lil alamin melalui medium digital. Kultum siber, diskusi kitab, dan pelatihan content creator dakwah Islami.', 'Agenda Jumat Berkah', 'Online Live', 'Syiar Digital', '1590073844006-33379778ae09'],
-  ['Program Baitul Arqam Online', 'Pembinaan ideologi Muhammadiyah untuk menanamkan militansi kader, pemahaman nilai Islam berkemajuan, serta etika mulia dalam teknologi.', 'Wajib Kelulusan S1', 'Sertifikat Resmi', 'Ideologi Kader', '1517245386807-bb43f82c33c4'],
-  ['Bayani, Burhani, & Irfani', 'Kerangka berpikir integratif: teks suci (Bayani), sains dan empiris (Burhani), serta intuisi spiritual (Irfani) dalam merancang peradaban siber.', 'Pondasi Etika Digital', 'Khas SiberMu', 'Epistemologi', '1454165804606-c3d57bc86b40']
+  ['Kajian Tematik & Cyber Dakwah', 'Menghidupkan risalah Islam rahmatan lil alamin melalui medium digital. Kultum siber, diskusi kitab, dan pelatihan content creator dakwah Islami.', 'Agenda Jumat Berkah', 'Online Live', 'Syiar Digital', '/hero/kajian.jpg'],
+  ['Program Baitul Arqam Online', 'Pembinaan ideologi Muhammadiyah untuk menanamkan militansi kader, pemahaman nilai Islam berkemajuan, serta etika mulia dalam teknologi.', 'Wajib Kelulusan S1', 'Sertifikat Resmi', 'Ideologi Kader', '/hero/dakwah.jpg'],
+  ['Bayani, Burhani, & Irfani', 'Kerangka berpikir integratif: teks suci (Bayani), sains dan empiris (Burhani), serta intuisi spiritual (Irfani) dalam merancang peradaban siber.', 'Pondasi Etika Digital', 'Khas SiberMu', 'Epistemologi', '/hero/prestasi.jpg']
 ]
 
 const GALERI = [
-  ['Webinar', 'Kuliah Umum Cyber Security Nasional', 'tag-webinar', '1531482615713-2afd69097998'],
-  ['Baitul Arqam', 'Baitul Arqam Mahasiswa Baru PJJ', 'tag-aik', '1517245386807-bb43f82c33c4'],
-  ['Ormawa', 'Sidang Paripurna BEM & DPM SiberMu', 'tag-ormawa', '1522202176988-66273c2fd55f'],
-  ['KKN', 'Pemberdayaan UMKM Digital oleh Mahasiswa', 'tag-kkn', '1552664730-d307ca884978']
+  ['Webinar', 'Kuliah Umum Cyber Security Nasional', 'tag-webinar', 'hero/layanan.jpg'],
+  ['Baitul Arqam', 'Baitul Arqam Mahasiswa Baru PJJ', 'tag-aik', 'quran-study'],
+  ['Ormawa', 'Sidang Paripurna BEM & DPM SiberMu', 'tag-ormawa', 'hero/ormawa.jpg'],
+  ['KKN', 'Pemberdayaan UMKM Digital oleh Mahasiswa', 'tag-kkn', 'hero/prestasi.jpg']
 ]
 
+// Helper untuk map nama event ke URL gambar Pexels (bebas hak cipta, nuansa Islami & Akademis)
+const EVENT_IMAGES = {
+  'hijab-study': 'https://images.pexels.com/photos/9383055/pexels-photo-9383055.jpeg?auto=compress&cs=tinysrgb&w=800', // Muslim girls in hijab studying
+  'hijab-group': 'https://images.pexels.com/photos/4004206/pexels-photo-4004206.jpeg?auto=compress&cs=tinysrgb&w=800', // Group of muslim students
+  'mosque-interior': 'https://images.pexels.com/photos/1176115/pexels-photo-1176115.jpeg?auto=compress&cs=tinysrgb&w=800', // Mosque interior
+  'quran-study': 'https://images.pexels.com/photos/32668051/pexels-photo-32668051.jpeg?auto=compress&cs=tinysrgb&w=800', // Woman in hijab classroom/study
+  'campus-muslim': 'https://images.pexels.com/photos/6084279/pexels-photo-6084279.jpeg?auto=compress&cs=tinysrgb&w=800' // Muslim female student laptop
+}
+
 const PRODI = [
-  { title: 'S1 Informatika', img: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=600&auto=format&fit=crop' },
-  { title: 'S1 Sistem Informasi', img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&auto=format&fit=crop' },
-  { title: 'S1 Administrasi Kesehatan', img: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=600&auto=format&fit=crop' },
-  { title: 'S1 Akuntansi', img: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=600&auto=format&fit=crop' },
-  { title: 'S1 Manajemen', img: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=600&auto=format&fit=crop' },
-  { title: 'S1 Hukum', img: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=600&auto=format&fit=crop' }
+  { title: 'S1 Informatika', img: '/hero/prodi-informatika.jpg' },
+  { title: 'S1 Sistem Informasi', img: '/hero/prodi-si.jpg' },
+  { title: 'S1 Administrasi Kesehatan', img: '/hero/prodi-kesehatan.jpg' },
+  { title: 'S1 Akuntansi', img: '/hero/prodi-akuntansi.jpg' },
+  { title: 'S1 Manajemen', img: '/hero/prodi-manajemen.jpg' },
+  { title: 'S1 Hukum', img: '/hero/prodi-hukum.jpg' }
 ]
 
 const SINERGI = [
@@ -522,7 +534,7 @@ export default function App() {
                   {AIK.map(([title, desc, t1, t2, badge, photo]) => (
                     <article key={title} className="card">
                       <div className="card-img-wrap card-img-tall">
-                        <img src={`https://images.unsplash.com/photo-${photo}?q=80&w=800&auto=format&fit=crop`} alt={title} />
+                        <img src={photo.startsWith('/') ? photo : (EVENT_IMAGES[photo] || photo)} alt={title} />
                         <span className="card-badge card-badge-top">{badge}</span>
                       </div>
                       <div className="card-body">
@@ -558,15 +570,18 @@ export default function App() {
                 <p>Potret/entusiasme mahasiswa SiberMu dalam kegiatan belajar jarak jauh, webinar nasional, kolaborasi riset, dan pengabdian masyarakat.</p>
               </div>
               <div className="grid-auto" data-parallax="0.04">
-                {GALERI.map(([tag, title, cls, photo]) => (
-                  <figure key={title} className="galery-card">
-                    <img src={`https://images.unsplash.com/photo-${photo}?q=80&w=600&auto=format&fit=crop`} alt={title} />
-                    <figcaption className="galery-overlay">
-                      <span className={`galery-tag ${cls}`}>{tag}</span>
-                      <h4>{title}</h4>
-                    </figcaption>
-                  </figure>
-                ))}
+                {GALERI.map(([tag, title, cls, photoKey]) => {
+                  const imgUrl = EVENT_IMAGES[photoKey] || photoKey
+                  return (
+                    <figure key={title} className="galery-card">
+                      <img src={imgUrl} alt={title} />
+                      <figcaption className="galery-overlay">
+                        <span className={`galery-tag ${cls}`}>{tag}</span>
+                        <h4>{title}</h4>
+                      </figcaption>
+                    </figure>
+                  )
+                })}
               </div>
             </Reveal>
 
